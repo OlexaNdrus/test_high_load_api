@@ -2,7 +2,7 @@ High Load Api
 
 # High Load Api
 
-High Load Api it is testing task written in Falcom
+High Load Api it is testing task written in Falcon
 
 ## Installation
 
@@ -19,6 +19,7 @@ pip install requirements.txt
 - Pytest
 - Uvicorn
 - Httpie
+- Marshmallow
 
 ## Usage
 
@@ -29,9 +30,10 @@ uvicorn app.asgi:app
 
 ```python
 # For testing one specific post request run:
-# Specify variable with path for specific JSON file 
-# or use default value in tools/test_post_request.py file:
+# Specify variables or use default value 
+# in tools/test_post_request.py file:
 TEST_JSON_FILE_PATH = 'post.json'
+URL = "http://127.0.0.1:8000/clients"
 # Run script:
 python tools/test_post_request.py
 
@@ -50,7 +52,8 @@ python tools/performance_test.py
 ```
 
 ### Requirements for test json object:
-It should be specified according to JSON schema in post_request_schema.json file.
+**POST method**
+Request body should be specified according JSON schema in app/schemas.py file.
 Basic sample:
 ```json
 {

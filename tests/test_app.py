@@ -12,15 +12,15 @@ def client():
 
 def test_post_message(client):
     test_inputs = [
-                      {'clients': [{'name': 'John'}]},
-                      {'clients': [{'name': 'John', 'email': 'john@mail.com'}]},
-                      {'clients': [{'name': 'John', 'email': 'john@mail.com'},
-                                   {'name': 'Jill', 'email': 'jill@mail.com'}]}]
+                      {'clients': [{'id': '123', 'name': 'John', 'email': 'test@mail.com'}]},
+                      {'clients': [{'id': 'John', 'email': 'john@mail.com'}]},
+                      {'clients': [{'id': '0', 'name': 'John', 'email': 'john@mail.com'},
+                                   {'id': '1', 'name': 'Jill', 'email': 'jill@mail.com'}]}]
 
     results = [
-               {'clients': ['John - NOT_FOUND']},
+               {'clients': ['123 - test@mail.com']},
                {'clients': ['John - john@mail.com']},
-               {'clients': ['John - john@mail.com', 'Jill - jill@mail.com']}
+               {'clients': ['0 - john@mail.com', '1 - jill@mail.com']}
                ]
 
     for test_input, expected_result in zip(test_inputs, results):
@@ -39,6 +39,6 @@ def test_post_message_on_exceptions(client):
     for test_input in test_inputs:
         json_data = json.dumps(test_input)
         result = client.simulate_post(path='/clients', body=json_data)
-        assert result.status == '400 Bad Request' or '500 Internal Server Error'
+        assert result.status == '400 Bad Request'
 
 

@@ -1,4 +1,7 @@
+"""Module contains schemas for validating json objects received in request"""
+
 from marshmallow import fields as f, Schema, validate
+
 
 class ClientItemSchema(Schema):
     id = f.String(required=True)
