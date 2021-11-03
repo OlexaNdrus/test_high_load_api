@@ -3,7 +3,7 @@ import json
 from falcon import testing
 import pytest
 
-from app import main
+from app import main, helpers
 
 @pytest.fixture()
 def client():
@@ -40,5 +40,11 @@ def test_post_message_on_exceptions(client):
         json_data = json.dumps(test_input)
         result = client.simulate_post(path='/clients', body=json_data)
         assert result.status == '400 Bad Request'
+
+def test_read_json_wrong_path():
+    for path in ['/', '//', 'path', '', ""]:
+        with pytest.raises(OSError):
+            helpers.read_json(path)
+
 
 
