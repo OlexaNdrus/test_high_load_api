@@ -46,5 +46,7 @@ def test_read_json_wrong_path():
         with pytest.raises(OSError):
             helpers.read_json(path)
 
-
+def test_read_json_invalid_data():
+    with pytest.raises(ValueError):
+        helpers.read_json('tests/test_file.json')
 

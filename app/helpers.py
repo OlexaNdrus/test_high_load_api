@@ -38,7 +38,7 @@ def read_json(file_path):
             try:
                 data = json.load(file)
             except BaseException:
-                raise json.decoder.JSONDecodeError('Data in test json file isnt json')
+                raise ValueError('Data in test json file isnt json')
         return data
     else:
         raise OSError('Wrong path for json testfile')
