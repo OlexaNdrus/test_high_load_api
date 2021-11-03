@@ -1,1 +1,1 @@
-web: uvicorn --port 443 app.asgi:app
+web: uvicorn app.asgi:app --host=0.0.0.0 --port=${PORT:-5000}
