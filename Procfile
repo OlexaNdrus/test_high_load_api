@@ -1,1 +1,1 @@
-web: uvicorn app.asgi:app
+web: uvicorn --port 443 app.asgi:app
